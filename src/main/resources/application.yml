@@ -1,0 +1,29 @@
+management:
+  security.enabled: false
+  health.diskspace.enabled: false
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    #database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties.hibernate.enable_lazy_load_no_trans: true
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+endpoints:
+  cors:
+    allowed-origins: "*"
+    allowed-headers: "*"
+    allowed-methods: "*"
+
